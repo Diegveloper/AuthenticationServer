@@ -24,5 +24,9 @@ public class AuthService {
     public String getToken(){
         return jwt.generateToken("diegolin");
     }
+
+    public String getUser(String token){
+        return jwt.extractUsername( token);
+    }
 }
 

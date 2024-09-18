@@ -1,9 +1,7 @@
 package com.ozomahtli.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
@@ -14,6 +12,12 @@ public class Controller {
     public String authenticate(@RequestBody Credentials credentials){
         System.out.println("username " + credentials.username());
         return service.getToken();
+    }
+
+    @GetMapping("/authenticate/{token}")
+    public String isAuthenticated(@PathVariable("token") String token){
+        System.out.println("user"+ service.getUser(token));
+        return "valid";
     }
 }
 
