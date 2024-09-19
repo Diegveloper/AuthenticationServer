@@ -3,7 +3,9 @@ package com.ozomahtli.authentication;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -16,9 +18,14 @@ public class JwtUtils {
 
 
     //Don't do this please
-    private final String SECRET_KEY = "123412341234123412341234123412341234123412341234";
+    private final String SECRET_KEY;
 
-    private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    private final SecretKey key ;
+
+    public JwtUtils(String key){
+        this.SECRET_KEY = key;
+        this.key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    }
 
     public String generateToken(String username){
         Map<String, Object> claims = new HashMap<>();
