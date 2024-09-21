@@ -24,6 +24,7 @@ public class JwtUtils {
 
     public JwtUtils(String key){
         this.SECRET_KEY = key;
+
         this.key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
     }
 
