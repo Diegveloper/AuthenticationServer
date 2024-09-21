@@ -17,6 +17,7 @@ public class Controller {
     @GetMapping("/authenticate/{token}")
     public String isAuthenticated(@PathVariable("token") String token){
         System.out.println("user"+ service.getUser(token));
+
         return "valid";
     }
 }
